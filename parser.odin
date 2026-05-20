@@ -112,3 +112,71 @@ report_errors :: proc(p: ^Parser) -> bool {
     }
     return false
 }
+
+
+TokenKind :: enum {
+    Invalid,
+    EOF,
+
+    SetupHead,
+    SetupBodyfont,
+
+    StartText,
+    StopText,
+
+    BracketOpen,
+    BracketClose,
+
+    ParagraphBreak,
+    SoftNewline,
+
+    Text,
+}
+
+Token :: struct {
+    kind: TokenKind,
+    lexeme: string,
+    span: TextRange,
+}
+
+// AST 
+Document :: struct {
+    preamble: Maybe([]PreambleCommand),
+    body: DocumentBody,
+    span: TextRange,
+}
+
+TextRange :: struct {
+    start: int,
+    end: int,
+}
+
+PreambleComand :: union {
+    SetupBodyfont,
+    SetupHead,
+}
+
+SetupBodyfont :: struct {
+    argument: BracketArgument,
+    span: TextRange,
+}
+
+SetupHead :: struct {
+    arguments: []BracketArgument,
+    span: TextRange,
+}
+
+BracketArgument :: struct {
+    text: string,
+    span: TextRange,
+}
+
+DocumentBody :: struct {
+    paragraphs: []Paragraph,
+    span: TextRange,
+}
+
+Paragraph :: struct {
+    text: string,
+    span: TextRange,
+}

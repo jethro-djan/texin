@@ -8,11 +8,21 @@ Lexer :: struct {
 
 TokenKind :: enum {
     Invalid,
-    Starttext,
-    Stoptext,
-    Text,
-    Whitespace,
     EOF,
+
+    SetupHead,
+    SetupBodyfont,
+
+    StartText,
+    StopText,
+
+    BracketOpen,
+    BracketClose,
+
+    ParagraphBreak,
+    SoftNewline,
+
+    Text,
 }
 
 Token :: struct {
