@@ -1,4 +1,4 @@
-package lexer
+package main
 
 Lexer :: struct {
     src: string,
