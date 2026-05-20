@@ -13,13 +13,9 @@ main :: proc() {
     defer delete(data)
 
     src := string(data)
+    p := make_parser(src)
+    defer destroy_parser(&p)
 
-    l := make_lexer(src)
-
-    // Lex untll EOF
-    for {
-        tok := next_token(&l)
-        fmt.printf("%-12v %q\n", tok.kind, tok.value)
-        if tok.kind == .EOF do break
-    }
+    parse_document(&p)
+    report_errors(&p)
 }

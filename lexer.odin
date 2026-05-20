@@ -6,7 +6,7 @@ Lexer :: struct {
     pos: int,
 }
 
-Token_Kind :: enum {
+TokenKind :: enum {
     Invalid,
     Starttext,
     Stoptext,
@@ -16,7 +16,7 @@ Token_Kind :: enum {
 }
 
 Token :: struct {
-    kind: Token_Kind,
+    kind: TokenKind,
     value: string,
 }
 
