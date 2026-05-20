@@ -1,0 +1,5 @@
+document ::= body 
+body ::= "\starttext" content "\stoptext"
+content ::= text*
+text ::= char+
+char ::= (* any character except "\" *)
