@@ -2,18 +2,18 @@ document ::= preamble body EOF ;
 
 preamble ::= preamble_command* ;
 preamble_command ::=  setup_bodyfont | setup_head;
-setup_bodyfont ::= SETUP_BODYFONT bracket_argument? ;
+setup_bodyfont ::= SETUP_BODYFONT bracket_argument ;
 setup_head ::= SETUP_HEAD bracket_argument* ;
 bracket_argument ::= BRACKET_OPEN argument_text? BRACKET_CLOSE ;
 argument_text ::= argument_char* ;
-argument_char ::= /* any character except "\", "{" or "}" */ ;
+argument_char ::= /* any character except "[" or "]" */ ;
 
 body ::= START_TEXT content STOP_TEXT ;
 content ::= paragraph (PARAGRAPH_BREAK paragraph)* PARAGRAPH_BREAK? ;
 paragraph ::= inline_text ;
 inline_text ::= inline_char+ ;
 inline_char ::= text_char | SOFT_NEWLINE ;
-text_char ::= /* any character except "\", "{" or "}" */ ;
+text_char ::= /* any character except "\", "{", "}", "\n" */ ;
 SOFT_NEWLINE ::= "\n" ;
 PARAGRAPH_BREAK ::= "\n" "\n" ;
 
